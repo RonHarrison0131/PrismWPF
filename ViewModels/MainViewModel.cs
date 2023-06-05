@@ -2,6 +2,7 @@
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
+using PrismWPF.Event;
 using PrismWPF.Views;
 using System;
 using System.Collections.Generic;
@@ -9,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xaml.Schema;
+using static PrismWPF.Event.MessageEvent;
 
 namespace PrismWPF.ViewModels
 {
@@ -16,19 +18,21 @@ namespace PrismWPF.ViewModels
     {
         private IRegionManager _regionManager;
         private IRegionNavigationJournal _journal;
+        private readonly IEventAggregator _aggregator;
 
         public DelegateCommand GoBackCommand { get; private set; }
         public DelegateCommand GoNextCommand { get; private set; }
         public DelegateCommand<string> NavigationCommand { get; private set; }
+        public DelegateCommand<object> PubSubEventCommand { get; private set; }
 
-        public MainViewModel(IRegionManager regionManager, IRegionNavigationJournal journal)
+        public MainViewModel(IRegionManager regionManager, IRegionNavigationJournal journal,IEventAggregator aggregator)
         {
-            this._regionManager = regionManager;
-            this._journal = journal;
+            _regionManager = regionManager;
+            _journal = journal;
+            _aggregator = aggregator;
             NavigationCommand = new DelegateCommand<string>(navigation);
             GoBackCommand = new DelegateCommand(goBack);
             GoNextCommand = new DelegateCommand(goNext);
-
         }
 
         private void goNext()
@@ -56,6 +60,20 @@ namespace PrismWPF.ViewModels
                     _journal = callback.Context.NavigationService.Journal;
                 }
             });
+
+            if (obj != null)
+            {
+                MessageModel msg = new MessageModel
+                {
+                    code = 200,
+                    message = "success",
+                    result = obj
+                };
+
+            _aggregator.GetEvent<MessageEvent>().Publish(msg);
+            }
+
+            
             Console.WriteLine(obj);
         }
     }

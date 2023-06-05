@@ -1,4 +1,6 @@
-﻿using Prism.Regions;
+﻿using Prism.Events;
+using Prism.Regions;
+using PrismWPF.Event;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static PrismWPF.Event.MessageEvent;
 
 namespace PrismWPF.Views
 {
@@ -20,7 +23,7 @@ namespace PrismWPF.Views
     /// </summary>
     public partial class MainView : Window
     {
-        public MainView(IRegionManager regionManager)
+        public MainView()
         {
             InitializeComponent();
         }

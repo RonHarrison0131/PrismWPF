@@ -79,6 +79,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Event\MessageEvent.cs" />
+    <Compile Include="ViewModels\IndexAViewModel.cs" />
+    <Compile Include="ViewModels\IndexBViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="Views\IndexAView.xaml.cs">
       <DependentUpon>IndexAView.xaml</DependentUpon>

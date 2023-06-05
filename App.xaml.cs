@@ -1,5 +1,7 @@
 ﻿using Prism.DryIoc;
 using Prism.Ioc;
+using Prism.Mvvm;
+using Prism.Regions;
 using PrismWPF.ViewModels;
 using PrismWPF.Views;
 using System;
@@ -9,6 +11,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace PrismWPF
 {
@@ -26,6 +29,16 @@ namespace PrismWPF
         {
             containerRegistry.RegisterForNavigation<IndexAView>();
             containerRegistry.RegisterForNavigation<IndexBView>();
+        }
+
+        protected override void ConfigureViewModelLocator()
+        {
+            base.ConfigureViewModelLocator();
+
+            ViewModelLocationProvider.Register(typeof(IndexAView).ToString(), typeof(IndexAViewModel));
+            ViewModelLocationProvider.Register(typeof(IndexBView).ToString(), typeof(IndexBViewModel));
+            ViewModelLocationProvider.Register(typeof(MainView).ToString(), typeof(MainViewModel));
+
         }
     }
 }
