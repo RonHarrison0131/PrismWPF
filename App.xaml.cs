@@ -1,4 +1,6 @@
-﻿using Prism.DryIoc;
+﻿using Microsoft.Extensions.Logging;
+using NLog.Extensions.Logging;
+using Prism.DryIoc;
 using Prism.Ioc;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -27,6 +29,7 @@ namespace PrismWPF
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+
             containerRegistry.RegisterForNavigation<IndexAView>();
             containerRegistry.RegisterForNavigation<IndexBView>();
         }

@@ -1,4 +1,5 @@
-﻿using Prism.Commands;
+﻿using FitowVision.Common;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
@@ -16,7 +17,7 @@ namespace PrismWPF.ViewModels
 {
     public class MainViewModel : BindableBase
     {
-        private IRegionManager _regionManager;
+        private readonly IRegionManager _regionManager;
         private IRegionNavigationJournal _journal;
         private readonly IEventAggregator _aggregator;
 
@@ -30,12 +31,12 @@ namespace PrismWPF.ViewModels
             _regionManager = regionManager;
             _journal = journal;
             _aggregator = aggregator;
-            NavigationCommand = new DelegateCommand<string>(navigation);
-            GoBackCommand = new DelegateCommand(goBack);
-            GoNextCommand = new DelegateCommand(goNext);
+            NavigationCommand = new DelegateCommand<string>(Navigation);
+            GoBackCommand = new DelegateCommand(GoBack);
+            GoNextCommand = new DelegateCommand(GoNext);
         }
 
-        private void goNext()
+        private void GoNext()
         {
             if (_journal.CanGoForward)
             {
@@ -43,7 +44,7 @@ namespace PrismWPF.ViewModels
             }
         }
 
-        private void goBack()
+        private void GoBack()
         {
             if (_journal.CanGoBack)
             {
@@ -51,7 +52,7 @@ namespace PrismWPF.ViewModels
             }
         }
 
-        private void navigation(string obj)
+        private void Navigation(string obj)
         {
             _regionManager.Regions["IndexViewRegion"].RequestNavigate(obj, callback =>
             {
