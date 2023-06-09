@@ -24,7 +24,7 @@ namespace PrismWPF
     {
         protected override Window CreateShell()
         {
-            return Container.Resolve<MainView>();
+            return Container.Resolve<LoginView>();
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -41,6 +41,7 @@ namespace PrismWPF
             ViewModelLocationProvider.Register(typeof(IndexAView).ToString(), typeof(IndexAViewModel));
             ViewModelLocationProvider.Register(typeof(IndexBView).ToString(), typeof(IndexBViewModel));
             ViewModelLocationProvider.Register(typeof(MainView).ToString(), typeof(MainViewModel));
+            ViewModelLocationProvider.Register(typeof(LoginView).ToString(), typeof(LoginViewModel));
 
         }
     }

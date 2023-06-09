@@ -20,7 +20,7 @@ namespace PrismWPF.ViewModels
 
         private void ShowMessage(MessageEvent.MessageModel model)
         {
-            MessageBox.Show($"Hello {model.result}!");
+            HandyControl.Controls.MessageBox.Show($"Hello {model.result}!");
         }
     }
 }
