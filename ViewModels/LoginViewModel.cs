@@ -35,7 +35,7 @@ namespace PrismWPF.ViewModels
         {
 			if (UserName=="1"&&PassWord=="1")
 			{
-				HandyControl.Controls.MessageBox.Show("登录成功");
+				HandyControl.Controls.MessageBox.Show("登成功");
 			}
 			else
 			{
