@@ -39,7 +39,7 @@ namespace PrismWPF.ViewModels
 			}
 			else
 			{
-                HandyControl.Controls.MessageBox.Show("登录失败");
+                HandyControl.Controls.MessageBox.Show("失败");
             }
         }
     }
